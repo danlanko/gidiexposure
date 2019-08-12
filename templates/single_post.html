@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <article class="content">
+                    <div class="post-thumb">
+                        <div class="videoWrapper">
+                            <iframe width="560" height="349" src="https://player.vimeo.com/video/{{ object.url }}?rel=0" frameborder="0" allowfullscreen></iframe>
+                        </div>
+{#                        <div class="social">#}
+{#                            <ul>#}
+{#                                <li><a href="details-style-three.html#" class="facebook"><i class="fa  fa-facebook"></i><span>3987</span> </a></li>#}
+{#                                <li><a href="details-style-three.html#" class="twitter"><i class="fa  fa-twitter"></i><span>3987</span></a></li>#}
+{#                                <li><a href="details-style-three.html#" class="google"><i class="fa  fa-google-plus"></i><span>3987</span></a></li>#}
+{#                                <li><a href="details-style-three.html#" class="flickr"><i class="fa fa-flickr"></i><span>3987</span> </a></li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                        <!-- /.social icon -->#}
+                    </div>
+                    <h1>{{ object.title }}</h1>
+                    <div class="date">
+                        <ul>
+                            <li><a title="" href="#">{{ object.date|date }}</a> --</li>
+                        </ul>
+                    </div>
+                    <p> {{ object.content|safe }}</p>
+
+
+                </article>
+            </div>
+            <div class="col-sm-4 left-padding">
+                <aside class="sidebar">
+                    <!-- /.search area -->
+                    <div class="banner-add">
+                    <!-- add -->
+                        <span class="add-title">- Advertisement -</span>
+                        <a href="#"><img src="https://via.placeholder.com/250x250" class="img-responsive center-block" alt=""></a>
+                    </div>
+                    <div class="tab-inner">
+                        <ul class="tabs">
+                            <li><a href="#">RECENT VIDEOS</a></li>
+                        </ul>
+                        <hr>
+                        <!-- tabs -->
+                        <div class="tab_content">
+                        <div class="tab-item-inner">
+                            {% for post in recent_post %}
+                                <div class="box-item wow fadeIn" data-wow-duration="1s">
+                                    <div class="img-thumb">
+                                        <iframe width="80" height="80" src="https://player.vimeo.com/video/{{ post.url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    </div>
+                                    <div class="item-details">
+                                        <h6 class="sub-category-title bg-color-2">
+                                                <a href="#">{{ post.cat }}</a>
+                                            </h6>
+                                        <h3 class="td-module-title"><a href="{% url 'single_post' post.slug %}">{{ post.title }}</a></h3>
+                                        <div class="post-editor-date">
+                                            <!-- post date -->
+                                            <div class="post-date">
+                                                <i class="fa fa-calendar"></i> {{ post.date|date }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!-- / tab item -->
+                    </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+{% endblock page_content %}

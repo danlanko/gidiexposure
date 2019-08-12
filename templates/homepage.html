@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block page_content %}
+    <section class="headding-news" style="padding-top: 0px; padding-bottom: 0px">
+        <div class=""> <!-- To have defined edges, use class="container" -->
+            <div class="row row-margin">
+                <div class="col-xs-12 col-md-12 col-sm-12 col-padding">
+                    <div id="news-feed-carousel" class="owl-carousel owl-theme">
+                        {% for slide in slide %}
+                        <div class="item">
+                            <div class="post-wrapper wow fadeIn" data-wow-duration="2s">
+                                <div class="post-thumb ">
+                                    <img src="{{ slide.image.url }}" alt="">
+                                </div>
+                                <div class="post-info">
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-8">
+                <section class="recent_news_inner">
+                    <h3 class="category-headding ">RECENT VIDEOS</h3>
+                    <div class="headding-border"></div>
+
+                    <div class="row rn_block">
+                        {% for item in post %}
+                            <div class="col-md-4 col-sm-6 padd">
+                            <center>
+                                <div class="post-wrapper wow fadeIn" data-wow-duration="1s">
+                                    <!-- image -->
+                                    <div class="post-thumb hidden-md hidden-xs">
+                                        <iframe width="220" height="240" src="https://player.vimeo.com/video/{{ item.url }}" frameborder="0" controls allowfullscreen></iframe>
+                                    </div>
+                                    <div class="post-thumb hidden-lg">
+                                        <iframe width="auto" height="auto" src="https://player.vimeo.com/video/{{ item.url }}" frameborder="0" controls allowfullscreen></iframe>
+                                    </div>
+                                    <div class="post-info meta-info-rn" style="margin-top: -20px">
+                                        <div class="slide">
+                                            <a target="_blank" href="#" class="post-badge">{{ item.cat }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post-title-author-details">
+                                    <h4><a href="{% url 'single_post' item.slug %}">{{ item.title }}</a></h4>
+                                    <div class="post-editor-date">
+                                        <div class="post-date">
+                                            <i class="fa fa-calendar"></i> {{ item.date|date }}
+                                        </div>
+                                        <p>About video.. <a href="{% url 'single_post' item.slug %}">Read more</a></p>
+                                    </div>
+                                </div>
+                            </center>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+
+                </section>
+
+                {% if landscape2 %}
+                    {% for item in landscape2 %}
+                    <a href="#">
+                        <img class="td-retina img-responsive" src="{{ item.image.url }}" alt="">
+                    </a>
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+            <!-- /.left content inner -->
+            <div class="col-md-4 col-sm-4 left-padding">
+
+                <div class="banner-add">
+                    <!-- add -->
+                    {% if sqaure %}
+                        {% for item in square %}
+                            <span class="add-title">- Advertisement -</span>
+                            <a href="#"><img src="{{ item.image.url }}" class="img-responsive center-block" alt=""></a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <!-- / tab -->
+            </div>
+            <!-- side content end -->
+        </div>
+        <!-- row end -->
+    </div>
+    <section class="video-post-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="category-headding ">RANDOM VIDEOS</h3>
+                    <div class="headding-border"></div>
+                </div>
+                {% for item in all_post %}
+                <div class="col-sm-4">
+                    <center>
+                        <div class="post-style1">
+                            <div class="post-wrapper wow fadeIn" data-wow-duration="1s" data-wow-delay="0.4s">
+                                <!-- post video -->
+                                <div class="post-thumb">
+                                    <iframe width="327" height="213" src="https://player.vimeo.com/video/{{ item.url }}?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <!-- post title -->
+                            <p style="color: whitesmoke">{{ item.title }}</p>
+                            <div class="post-title-author-details">
+                                <div class="date">
+                                    <ul>
+                                        <li><a title="" href="#">Oct 6, 2016</a> --</li>
+                                        <li><a title="" href="{% url 'single_post' item.slug %}"><span>Read More</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <div class="ads">
+        {% if landscape2 %}
+            {% for item in landscape2 %}
+            <a href="#">
+                <img class="td-retina img-responsive" src="{{ item.image.url }}" alt="">
+            </a>
+            {% endfor %}
+            {% else %}
+            <div class="ads">
+                <a href="home-style-two.html#"><img src="https://via.placeholder.com/728x90" class="img-responsive center-block" alt=""></a>
+            </div>
+        {% endif %}
+    </div>
+<!-- container end -->
+{% endblock page_content %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_content %}
+    <section class="block-inner">
+        <div class="container" >
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1>
+                        {% for item in cat %}
+                            <a href="{% url 'category' 'category' item.slug %}">{{ item.name|capfirst }} {% if not forloop.last %} | {% endif %}</a>
+                        {% endfor %}
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div>
+        <img class="col-md-6 img img-responsive" style="padding-bottom: 30px" src="{% static 'images/screen_chapters.jpg' %}">
+    </div>
+
+    <div class="col-md-6">
+         <p style="font-size: 18px; text-align: justify; margin: 0 25px 0 25px">
+            Hi, welcome to Screen Chapters.
+            I'm Joseph Effang, creative director and cinematographer at Screen Chapters.
+            With years of experience in working on Music Videos, Commercial,
+            Concert Videos and now producing visual contents for Gidi Exposure,
+            we have created value in experience, efficiency and creativity,
+            all which could be deployed to your project should you choose to engage us.
+            You are welcome to VIEW OUR REEL.
+            <br /><br />
+            I look forward to working with you...</p> <br />
+
+            <div style="font-size: 18px; margin: 0 25px 0 25px">
+                <ul>
+                    <li class="fa fa-phone"><a href="tel:+234 9094 952106"> +234 9094 952106</a> </li> <br />
+                    <li class="fa fa-phone"><a href="tel:+234 7066 037774"> +234 7066 037774</a> </li> <br />
+                    <li class="fa fa-envelope"><a href="mailto:screenchapters@gmail.com"> screenchapters@gmail.com</a> </li> <br />
+                </ul>
+            </div> <br />
+
+        <div class="social" style="float: left;">
+
+            <div class="top_header_icon">
+                <span class="top_header_icon_wrap">
+                        <a target="_blank" href="https://twitter.com/screenchapters" title="Twitter"><i class="fa fa-twitter fa-5x"></i></a>
+                    </span>
+                <span class="top_header_icon_wrap">
+                        <a target="_blank" href="https://web.facebook.com/screenchapters?_rdc=1&_rdr" title="Facebook"><i class="fa fa-facebook fa-5x"></i></a>
+                    </span>
+                <span class="top_header_icon_wrap">
+                        <a target="_blank" href="https://www.instagram.com/screenchapters/" title="Instagram"><i class="fa fa-instagram fa-5x"></i></a>
+                    </span>
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+
+{% endblock page_content %}
+
+{% block footer %}
+
+{% endblock footer %}

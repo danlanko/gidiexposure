@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_content %}
+    <section class="block-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1>{{ select_category.name }}</h1>
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li><i class="fa fa-home"></i> <a href="{% url 'homepage' %}" title="">Home</a></li>
+                            <li><a href="#" title="">{{ select_category.name }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                {% for post in category_post %}
+                    <div class="col-sm-6 post-style1">
+                        <div class="post-wrapper wow fadeIn" data-wow-duration="1s">
+                            <!-- post image -->
+                                <iframe width="327" height="213" src="https://www.youtube.com/embed/{{ post.url }}?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <div class="post-info meta-info-rn">
+                                <div class="slide">
+                                    <a target="_blank" href="#" class="post-badge">{{ post.cat }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- post title -->
+                        <h4><a href="{% url 'single_post' post.slug %}">{{ post.title }}</a></h4>
+                        <div class="post-title-author-details">
+                            <div class="date">
+                                <ul>
+                                    <li>{{ post.date|date }}</li>
+                                </ul>
+                            </div>
+                            <p>More details?... <a href="{% url 'single_post' post.slug %}">Read more...</a></p>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+
+            <aside class="col-sm-4 left-padding">
+                <div class="tab-inner">
+                    <ul class="tabs">
+                        <li><a href="#">RECENT VIDEOS</a></li>
+                    </ul>
+                    <hr>
+                    <!-- tabs -->
+                    <div class="tab_content">
+                        <div class="tab-item-inner">
+                            {% for post in recent_post %}
+                                <div class="box-item wow fadeIn" data-wow-duration="1s">
+                                    <div class="img-thumb">
+                                        <iframe width="80" height="80" src="https://www.youtube.com/embed/{{ post.url }}?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    </div>
+                                    <div class="item-details">
+                                        <h6 class="sub-category-title bg-color-2">
+                                                <a href="#">{{ post.cat }}</a>
+                                            </h6>
+                                        <h3 class="td-module-title"><a href="{% url 'single_post' post.slug %}">{{ post.title }}</a></h3>
+                                        <div class="post-editor-date">
+                                            <!-- post date -->
+                                            <div class="post-date">
+                                                <i class="fa fa-calendar"></i> {{ post.date|date }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!-- / tab item -->
+                    </div>
+                    <!-- / tab_content -->
+                </div>
+                <!-- / tab -->
+
+
+                <div class="banner-add">
+                    <!-- add -->
+                    {% if sqaure %}
+                        {% for item in square %}
+                            <span class="add-title">- Advertisement -</span>
+                            <a href="#"><img src="{{ item.image.url }}" class="img-responsive center-block" alt=""></a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </aside>
+
+
+        </div>
+    </div>
+{% endblock page_content %}
